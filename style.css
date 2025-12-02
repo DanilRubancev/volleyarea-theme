@@ -1,12 +1,16 @@
 /*
 Theme Name: VolleyArea Theme
-Author: Gemini
-Description: Тема WordPress для сайта VolleyArea, созданная на основе макета Figma.
-Version: 1.0
+Author: dania
+Description: Тема WordPress для сайта VolleyArea на Bootstrap 5
+Version: 2.0
 Text Domain: volleyarea-theme
 */
 
-:root { /*css переменные*/
+/*
+Custom styles for VolleyArea built on Bootstrap 5
+*/
+
+:root {
     --bg-color: #373737;
     --header-bg: #38542B;
     --primary-text: #C5FFBC;
@@ -16,73 +20,26 @@ Text Domain: volleyarea-theme
     --faq-bg: #595757;
     --text-dark: #000000;
     --text-light: #FFFFFF;
+
     --font-main: 'Montserrat', sans-serif;
     --font-logo: 'Nova Script', cursive;
     --font-title: 'Nova Round', sans-serif;
 }
 
-*, /*сброс стилей*/
-*::before,
-*::after {
+* {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
-body { /*базовый стиль*/
+body {
     background-color: var(--bg-color);
     color: var(--text-light);
     font-family: var(--font-main);
-    font-size: 16px;
-    line-height: 1.5;
 }
 
-.container { /*система сетки*/
-    max-width: 1320px;
-    padding: 0 20px;
-    margin: 0 auto;
-}
-
-img { /*адаптивное и блочное изображение*/
-    max-width: 100%;
-    display: block;
-}
-
-a { /*убирает подчеркивание ссылок + наследует цвет*/
-    text-decoration: none;
-    color: inherit;
-}
-
-ul { /*убирает маркеры списков*/
-    list-style: none;
-}
-
-button { /*сбрасывает стили кнопок + добавляет курсор указатель*/
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    font-family: inherit;
-}
-
-/* шапка */
-.header {
+/* Header & Navbar */
+.header .navbar {
     background-color: var(--header-bg);
     padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.header-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
 }
 
 .logo-icon {
@@ -94,60 +51,41 @@ button { /*сбрасывает стили кнопок + добавляет к�
     font-family: var(--font-logo);
     font-size: 36px;
     color: var(--primary-text);
+    font-style: italic;
 }
 
-.nav-list { /*навигационное меня сверху*/
-    display: flex;
-    gap: 40px;
-}
-
-.nav-list a {
+.navbar-nav .nav-link {
     font-size: 18px;
     font-weight: 600;
     color: var(--text-dark);
-    padding: 10px;
+    padding: 10px 20px;
     border-radius: 50px;
     transition: background-color 0.3s, color 0.3s;
+    margin: 0 5px;
 }
 
-.nav-list a:hover {
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:focus {
     background-color: var(--accent-color);
+    color: var(--text-dark);
 }
 
-.burger-menu { /*бургер меню для мобилок*/
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    width: 30px;
-    height: 25px;
+.navbar-toggler {
+    border-color: var(--accent-color);
 }
 
-.burger-menu span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: var(--accent-color);
-    border-radius: 3px;
-    transition: all 0.3s;
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='%2390FF77' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
 }
 
-
-/*главный баннер*/
+/* Hero Section */
 .hero {
-    position: relative;
+    min-height: 80vh;
     color: var(--primary-text);
     padding: 100px 0;
-    min-height: 80vh;
-    display: flex;
-    align-items: center;
 }
 
-.hero-background { /*фон главного меню*/
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+.hero-background {
     z-index: -1;
 }
 
@@ -156,31 +94,26 @@ button { /*сбрасывает стили кнопок + добавляет к�
     position: absolute;
     inset: 0;
     background-color: rgba(0, 0, 0, 0.4);
+    z-index: 1;
 }
 
 .hero-background img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
 }
 
-.hero-title { /*заголовки главного меню*/
+.hero .container {
+    z-index: 2;
+}
+
+.hero-title {
     font-family: var(--font-title);
     font-size: 80px;
     line-height: 1.1;
-    margin-bottom: 24px;
 }
 
 .hero-subtitle {
     font-size: 24px;
     font-weight: 500;
-    margin-bottom: 40px;
-}
-
-.filter-buttons { /*кнопки фильтрации*/
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
 }
 
 .filter-btn {
@@ -190,87 +123,49 @@ button { /*сбрасывает стили кнопок + добавляет к�
     color: var(--text-dark);
     font-size: 18px;
     font-weight: 600;
+    border: none;
     transition: background-color 0.3s;
 }
 
 .filter-btn:hover,
 .filter-btn.active {
     background-color: var(--accent-color);
+    color: var(--text-dark);
 }
 
-
-/*сетка тренировок*/
+/* Training Cards */
 .trainings {
-    padding: 80px 0;
+    background-color: var(--bg-color);
 }
 
-.trainings-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
-}
-
-.training-card { /*карточка тренировки*/
+.training-card {
     background-color: var(--card-bg);
     border-radius: 30px;
     padding: 25px;
     color: var(--text-dark);
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+    border: none;
 }
 
-.bookmark-btn { /*кнопка избранного(закладка)*/
-    position: absolute;
-    top: 25px;
-    right: 25px;
+.bookmark-btn {
+    background-color: transparent;
 }
 
 .bookmark-btn.active svg path {
     fill: var(--text-dark);
 }
 
-.card-header, .card-footer, .card-body { /*структура карточки тренеровок*/
-    display: flex;
-    flex-direction: column;
+.bookmark-btn:hover {
+    transform: scale(1.1);
 }
 
-.card-header {
-    gap: 5px;
-}
-.card-body {
-    gap: 10px;
-    margin-top: auto;
-    margin-bottom: auto;
-    padding: 15px 0;
-}
-.card-footer {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.card-trainer { /*элементы информации карточек*/
+.card-trainer {
     font-size: 24px;
     font-weight: 600;
 }
+
 .card-type {
     font-size: 18px;
     font-weight: 500;
-}
-
-.info-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    font-size: 18px;
-    font-weight: 500;
-}
-
-.info-item img {
-    width: 24px;
-    height: 24px;
 }
 
 .card-price {
@@ -278,135 +173,105 @@ button { /*сбрасывает стили кнопок + добавляет к�
     font-weight: 600;
 }
 
-/*почему мы*/
+/* Why Us Section */
 .why-us {
-    padding: 80px 0;
+    background-color: var(--bg-color);
 }
 
 .section-title {
     font-family: var(--font-logo);
     font-size: 64px;
-    text-align: center;
-    margin-bottom: 60px;
     color: var(--primary-text);
+    font-style: italic;
 }
 
-.why-us-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
-}
-
-.why-us-card img { /*карточки почему мы*/
-    width: 100%;
+.why-us-card img {
     height: 250px;
     object-fit: cover;
-    border-radius: 20px;
-    margin-bottom: 20px;
 }
 
-.why-us-card p {
-    font-size: 18px;
-    font-weight: 500;
-    text-align: center;
-}
-
-/*контакты*/
+/* Contacts Section */
 .contacts {
-    padding: 80px 0;
+    background-color: var(--bg-color);
 }
 
-.contacts-content {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 60px;
-    align-items: center;
-}
-
-.contacts-info .section-title { /*информация для контактов*/
+.contacts-info .section-title {
     text-align: left;
 }
 
 .info-text p {
-    font-family: var(--font-main);
     font-size: 24px;
     line-height: 1.8;
-    margin-bottom: 15px;
 }
 
-.info-text strong {
-    font-weight: 600;
-}
-
-.map img { /*карта*/
-    width: 100%;
+.map img {
     height: 100%;
     object-fit: cover;
-    border-radius: 20px;
 }
 
-/*часто задаваемые вопросы*/
+/* FAQ Section */
 .faq {
-    padding: 80px 0;
+    background-color: var(--bg-color);
 }
 
-.faq-accordion {
-    max-width: 900px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.faq-item { /*элементы часто задаваемых вопросов*/
+.faq .accordion-item {
     background-color: var(--faq-bg);
+    border: none;
     border-radius: 50px;
+    overflow: hidden;
 }
 
-.faq-question {
-    width: 100%;
-    text-align: left;
-    padding: 25px 40px;
+.faq .accordion-button {
+    background-color: var(--faq-bg);
+    color: var(--text-light);
     font-size: 20px;
     font-weight: 600;
-    color: var(--text-light);
-    position: relative;
+    padding: 25px 40px;
+    border-radius: 50px;
+    border: none;
 }
 
-.faq-question::after {
+.faq .accordion-button:not(.collapsed) {
+    background-color: var(--faq-bg);
+    color: var(--text-light);
+    box-shadow: none;
+}
+
+.faq .accordion-button:focus {
+    box-shadow: none;
+    border: none;
+}
+
+.faq .accordion-button::after {
     content: '+';
-    position: absolute;
-    right: 40px;
-    top: 50%;
-    transform: translateY(-50%);
+    background-image: none;
     font-size: 30px;
+    width: auto;
+    height: auto;
     transition: transform 0.3s;
 }
 
-.faq-item.active .faq-question::after { /*анимация развертки*/
-    transform: translateY(-50%) rotate(45deg);
+.faq .accordion-button:not(.collapsed)::after {
+    content: '+';
+    transform: rotate(45deg);
 }
 
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
-}
-.faq-answer p {
+.faq .accordion-body {
+    background-color: var(--faq-bg);
+    color: var(--text-light);
     padding: 0 40px 25px;
-    font-weight: 500;
 }
 
-.faq-item-static { /*статический faq*/
+.faq-item-static {
     background-color: var(--faq-bg);
     border-radius: 50px;
     padding: 25px 40px;
     font-size: 18px;
     font-weight: 500;
-    text-align: center;
+    color: var(--text-light);
 }
 
-/*адаптивный дизайн*/
+/* Responsive */
 @media (max-width: 1200px) {
     .hero-title {
         font-size: 64px;
@@ -414,101 +279,77 @@ button { /*сбрасывает стили кнопок + добавляет к�
 }
 
 @media (max-width: 992px) {
-    .nav {
-        position: relative;
-    }
-    .burger-menu { /*включение бургер меню*/
-        display: flex;
-        z-index: 101;
-    }
-    .burger-menu.active span:nth-child(1) { /*превращение бургер меню в крестик*/
-        transform: translateY(8px) rotate(45deg);
-    }
-    .burger-menu.active span:nth-child(2) {
-        opacity: 0;
-    }
-    .burger-menu.active span:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-    }
-
-    .nav-list { /*мобильное меню*/
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 60%;
-        height: 100vh;
-        background-color: var(--header-bg);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: right 0.5s;
-        gap: 25px;
-    }
-    .nav-list.active {
-        right: 0;
-    }
-
-    .hero-title { /*для планшетов адаптация*/
+    .hero-title {
         font-size: 48px;
     }
+    
     .hero-subtitle {
         font-size: 20px;
     }
+    
     .filter-btn {
         font-size: 16px;
         padding: 10px 25px;
     }
-    .trainings-grid {
-        grid-template-columns: 1fr;
-    }
-    .why-us-grid {
-        grid-template-columns: 1fr;
-    }
-    .contacts-content {
-        grid-template-columns: 1fr;
-        gap: 40px;
-    }
+    
     .contacts-info .section-title {
         text-align: center;
     }
 }
 
-@media (max-width: 768px) { /*адаптивность с дальнейшим уменьшением заголовков*/
+@media (max-width: 768px) {
     .section-title {
         font-size: 48px;
     }
+    
+    .logo-text {
+        font-size: 28px;
+    }
 }
 
-@media (max-width: 576px) { /*адаптивность для мобилок*/
+@media (max-width: 576px) {
     .hero {
         text-align: center;
     }
+    
     .hero-title {
         font-size: 36px;
     }
+    
     .hero-subtitle {
         font-size: 18px;
     }
+    
     .filter-buttons {
         justify-content: center;
     }
-    .card-trainer, .info-text p {
+    
+    .card-trainer {
         font-size: 20px;
     }
-    .card-type, .info-item, .card-price {
+    
+    .card-type {
         font-size: 16px;
     }
+    
+    .card-price {
+        font-size: 18px;
+    }
+    
     .section-title {
         font-size: 36px;
     }
-    .faq-question {
+    
+    .info-text p {
+        font-size: 20px;
+    }
+    
+    .faq .accordion-button {
         font-size: 16px;
         padding: 20px;
     }
-    .faq-question::after {
-        right: 20px;
-    }
-    .faq-answer p {
+    
+    .faq .accordion-body {
         padding: 0 20px 20px;
     }
 }

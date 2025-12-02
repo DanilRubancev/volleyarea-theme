@@ -1,0 +1,514 @@
+/*
+Theme Name: VolleyArea Theme
+Author: Gemini
+Description: Тема WordPress для сайта VolleyArea, созданная на основе макета Figma.
+Version: 1.0
+Text Domain: volleyarea-theme
+*/
+
+:root { /*css переменные*/
+    --bg-color: #373737;
+    --header-bg: #38542B;
+    --primary-text: #C5FFBC;
+    --accent-color: #90FF77;
+    --button-bg: #92C087;
+    --card-bg: #90FF77;
+    --faq-bg: #595757;
+    --text-dark: #000000;
+    --text-light: #FFFFFF;
+    --font-main: 'Montserrat', sans-serif;
+    --font-logo: 'Nova Script', cursive;
+    --font-title: 'Nova Round', sans-serif;
+}
+
+*, /*сброс стилей*/
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body { /*базовый стиль*/
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.container { /*система сетки*/
+    max-width: 1320px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+img { /*адаптивное и блочное изображение*/
+    max-width: 100%;
+    display: block;
+}
+
+a { /*убирает подчеркивание ссылок + наследует цвет*/
+    text-decoration: none;
+    color: inherit;
+}
+
+ul { /*убирает маркеры списков*/
+    list-style: none;
+}
+
+button { /*сбрасывает стили кнопок + добавляет курсор указатель*/
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+    font-family: inherit;
+}
+
+/* шапка */
+.header {
+    background-color: var(--header-bg);
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-text {
+    font-family: var(--font-logo);
+    font-size: 36px;
+    color: var(--primary-text);
+}
+
+.nav-list { /*навигационное меня сверху*/
+    display: flex;
+    gap: 40px;
+}
+
+.nav-list a {
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-dark);
+    padding: 10px;
+    border-radius: 50px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-list a:hover {
+    background-color: var(--accent-color);
+}
+
+.burger-menu { /*бургер меню для мобилок*/
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    width: 30px;
+    height: 25px;
+}
+
+.burger-menu span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+    transition: all 0.3s;
+}
+
+
+/*главный баннер*/
+.hero {
+    position: relative;
+    color: var(--primary-text);
+    padding: 100px 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+}
+
+.hero-background { /*фон главного меню*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.hero-background::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-title { /*заголовки главного меню*/
+    font-family: var(--font-title);
+    font-size: 80px;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.hero-subtitle {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.filter-buttons { /*кнопки фильтрации*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.filter-btn {
+    padding: 12px 32px;
+    border-radius: 30px;
+    background-color: var(--button-bg);
+    color: var(--text-dark);
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background-color: var(--accent-color);
+}
+
+
+/*сетка тренировок*/
+.trainings {
+    padding: 80px 0;
+}
+
+.trainings-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+}
+
+.training-card { /*карточка тренировки*/
+    background-color: var(--card-bg);
+    border-radius: 30px;
+    padding: 25px;
+    color: var(--text-dark);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.bookmark-btn { /*кнопка избранного(закладка)*/
+    position: absolute;
+    top: 25px;
+    right: 25px;
+}
+
+.bookmark-btn.active svg path {
+    fill: var(--text-dark);
+}
+
+.card-header, .card-footer, .card-body { /*структура карточки тренеровок*/
+    display: flex;
+    flex-direction: column;
+}
+
+.card-header {
+    gap: 5px;
+}
+.card-body {
+    gap: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+    padding: 15px 0;
+}
+.card-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-trainer { /*элементы информации карточек*/
+    font-size: 24px;
+    font-weight: 600;
+}
+.card-type {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.info-item img {
+    width: 24px;
+    height: 24px;
+}
+
+.card-price {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/*почему мы*/
+.why-us {
+    padding: 80px 0;
+}
+
+.section-title {
+    font-family: var(--font-logo);
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 60px;
+    color: var(--primary-text);
+}
+
+.why-us-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.why-us-card img { /*карточки почему мы*/
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 20px;
+}
+
+.why-us-card p {
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/*контакты*/
+.contacts {
+    padding: 80px 0;
+}
+
+.contacts-content {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.contacts-info .section-title { /*информация для контактов*/
+    text-align: left;
+}
+
+.info-text p {
+    font-family: var(--font-main);
+    font-size: 24px;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.info-text strong {
+    font-weight: 600;
+}
+
+.map img { /*карта*/
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/*часто задаваемые вопросы*/
+.faq {
+    padding: 80px 0;
+}
+
+.faq-accordion {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.faq-item { /*элементы часто задаваемых вопросов*/
+    background-color: var(--faq-bg);
+    border-radius: 50px;
+}
+
+.faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 25px 40px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-light);
+    position: relative;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 30px;
+    transition: transform 0.3s;
+}
+
+.faq-item.active .faq-question::after { /*анимация развертки*/
+    transform: translateY(-50%) rotate(45deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, padding 0.5s ease-in-out;
+}
+.faq-answer p {
+    padding: 0 40px 25px;
+    font-weight: 500;
+}
+
+.faq-item-static { /*статический faq*/
+    background-color: var(--faq-bg);
+    border-radius: 50px;
+    padding: 25px 40px;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+}
+
+/*адаптивный дизайн*/
+@media (max-width: 1200px) {
+    .hero-title {
+        font-size: 64px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav {
+        position: relative;
+    }
+    .burger-menu { /*включение бургер меню*/
+        display: flex;
+        z-index: 101;
+    }
+    .burger-menu.active span:nth-child(1) { /*превращение бургер меню в крестик*/
+        transform: translateY(8px) rotate(45deg);
+    }
+    .burger-menu.active span:nth-child(2) {
+        opacity: 0;
+    }
+    .burger-menu.active span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-list { /*мобильное меню*/
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 60%;
+        height: 100vh;
+        background-color: var(--header-bg);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.5s;
+        gap: 25px;
+    }
+    .nav-list.active {
+        right: 0;
+    }
+
+    .hero-title { /*для планшетов адаптация*/
+        font-size: 48px;
+    }
+    .hero-subtitle {
+        font-size: 20px;
+    }
+    .filter-btn {
+        font-size: 16px;
+        padding: 10px 25px;
+    }
+    .trainings-grid {
+        grid-template-columns: 1fr;
+    }
+    .why-us-grid {
+        grid-template-columns: 1fr;
+    }
+    .contacts-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .contacts-info .section-title {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) { /*адаптивность с дальнейшим уменьшением заголовков*/
+    .section-title {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 576px) { /*адаптивность для мобилок*/
+    .hero {
+        text-align: center;
+    }
+    .hero-title {
+        font-size: 36px;
+    }
+    .hero-subtitle {
+        font-size: 18px;
+    }
+    .filter-buttons {
+        justify-content: center;
+    }
+    .card-trainer, .info-text p {
+        font-size: 20px;
+    }
+    .card-type, .info-item, .card-price {
+        font-size: 16px;
+    }
+    .section-title {
+        font-size: 36px;
+    }
+    .faq-question {
+        font-size: 16px;
+        padding: 20px;
+    }
+    .faq-question::after {
+        right: 20px;
+    }
+    .faq-answer p {
+        padding: 0 20px 20px;
+    }
+}
